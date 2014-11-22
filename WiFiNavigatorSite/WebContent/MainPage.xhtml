@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Modern Business - Start Bootstrap Template</title>
+
+    <h:outputStylesheet library="css" name="bootstrap.css"/>
+    <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+    <h:outputStylesheet library="css" name="modern-business.css"/>
+    <h:outputStylesheet library="font-awesome-4.1.0/css" name="font-awesome.css"/>
+    <h:outputStylesheet library="font-awesome-4.1.0/css" name="font-awesome.min.css"/>
+    <h:outputScript library="js" name="jquery.js"></h:outputScript>
+    <h:outputScript library="js" name="bootstrap.js"></h:outputScript>
+    <h:outputScript library="js" name="bootstrap.min.js"></h:outputScript>
+
+</h:head>
+
+<h:body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Wi-Fi Navigator</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="about.html">О нас</a>
+                    </li>
+                    <li>
+                        <a href="services.html">Сервисы</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Контакты</a>
+                    </li>
+                    <li class="dropdown">
+                       <a href="#" class="dropdown-toggle" data-toggle="dropdown">Другие страницы <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="full-width.html">Полноразмерная страница</a>
+                            </li>
+                            <li>
+                                <a href="sidebar.html">Sidebar Page</a>
+                            </li>
+                            <li>
+                                <a href="faq.html">FAQ</a>
+                            </li>
+                            <li>
+                                <a href="404.html">404</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Header Carousel -->
+      <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <h:graphicImage value="resources/images/airport2.jpg" styleClass="fill" />
+                <div class="carousel-caption">
+                    <h2>Аэропорты</h2>
+                </div>
+            </div>
+            <div class="item">
+                <h:graphicImage value="resources/images/museum2.jpg" styleClass="fill"></h:graphicImage>
+                <div class="carousel-caption">
+                    <h2>Музеи</h2>
+                </div>
+            </div>
+            <div class="item">
+                 <h:graphicImage value="resources/images/mall2.jpg" styleClass="fill"></h:graphicImage>
+                <div class="carousel-caption">
+                    <h2>Торговые центры</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+    </header> 
+    <!-- Page Content -->
+    <div class="container">
+        <!-- Marketing Icons Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Добро пожаловать на сайт Wi-Fi Navigator!
+                </h1>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-mobile"></i> Приложение для смарфонов</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Вы можете загрузить демо-версию приложения для своего android смартфона прямо сейчас!. Это позволит вам загружать и пользоваться картами, расположенными на нашем сайте. Для скачивания нажмите на кнопку загрузки, расположенную внизу этой панели.</p>
+                        <h:form><p:commandButton value="Download" ajax="false" actionListener="#{mainPage.downloadProgram}" icon="ui-icon-arrowthick-1-s" styleClass="btn btn-default"/></h:form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-qrcode"></i> Загрузка карт</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Вы можете загрузить карты для навигатора, нажав на кнопку, расположенную ниже. Для этого воспользуйтесь встроенным в навигатор сканером QR-кодов. Просто наведите камеру на выбранный код и карта загрузится на телефон. (пока количество карт ограничено)</p>
+                        <p:commandButton action="PlansTable?faces-redirect=true" value="Скачать карты" styleClass="btn btn-default"/>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4><i class="fa fa-fw fa-ban"></i> В разработке</h4>
+                    </div>
+                    <div class="panel-body">
+                        <p>Данный раздел находится в разработке. Когда появится дополнительная информация о навигаторе, она будет размещена здесь.</p>
+                        <a href="#" class="btn btn-default">Не нажимать</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- /.row -->
+
+        <!-- Features Section -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Инновационное навигационное приложение</h2>
+            </div>
+            <div class="col-md-6">
+                <p>Приложение Wi-Fi Navigator обладает следующими преимуществами:</p>
+                <ul>
+                    <li><strong>Работает внутри зданий</strong>
+                    </li>
+                    <li>Не имеет аналогов в России</li>
+                    <li>Преимущество №3</li>
+                    <li>Преимущество №4</li>
+                    <li>Преимущество №5</li>
+                    <li>Преимущество №6</li>
+                </ul>
+                <p>Наше навигационное приложение работает внутри зданий помеченных специальным значком Wi-Fi Navigator. Вы можете использовать приложение для того, чтобы найти интересующий вас объект и проложить к нему маршрут.</p>
+            </div>
+            <div class="col-md-6">
+                <img class="img-responsive" src="resources/images/tablet.png" alt=""/>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr></hr>
+
+        <!-- Call to Action Section -->
+        <div class="well">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>Здесь должна быть важная надпись, но я не знаю, что здесь нужно писать</p>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn btn-lg btn-default btn-block" href="#">Какая-то кнопка</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        </hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; VANO 2014</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+</h:body>
+
+</html>

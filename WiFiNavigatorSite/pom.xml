@@ -77,5 +77,10 @@
             <artifactId>jstl</artifactId>
             <version>1.1.2</version>
         </dependency>
+        <dependency>
+			<groupId>org.omnifaces</groupId>
+			<artifactId>omnifaces</artifactId>
+			<version>1.5</version>
+		</dependency>
     </dependencies>
 </project>

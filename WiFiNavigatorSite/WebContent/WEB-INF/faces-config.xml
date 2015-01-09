@@ -9,4 +9,7 @@
 		<managed-bean-class>beans.MainPage</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<!--  <application>
+    	<resource-handler>org.omnifaces.resourcehandler.UnmappedResourceHandler</resource-handler>
+	</application> -->
 </faces-config>

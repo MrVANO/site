@@ -48,7 +48,7 @@ public class Main implements Runnable{
 	}
 	
 	/*
-	 * подготавливаем класс для передачи по сети
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 	 */
 	
 	private static NavigationData getNavigationData(String numberOfPlace) throws ClassNotFoundException, SQLException, IOException{
@@ -89,9 +89,9 @@ public class Main implements Runnable{
 	}
 	
 	/*
-	 * Посылаем сериализованный класс NavigationData клиенту
-	 * или
-	 * Записываем в БД пришедшие данные
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ NavigationData пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	 * пїЅпїЅпїЅ
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	private static void sendTabletoClient() throws IOException, ClassNotFoundException, SQLException{
 		deserializer = new ObjectInputStream(clientSocket.getInputStream());
@@ -114,22 +114,23 @@ public class Main implements Runnable{
 	}
 	
 	/*
-	 * Находим соответствующее изображение на сервере
-	 * и переводим его в масссив байтов
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	 * пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	 */
 	private static byte[] getImageInBytes(String imageName) throws IOException, ClassNotFoundException, SQLException{
 		/*
-		 * возможно здесь стоит не вытаскивать изображение с диска, 
-		 * а брать его из БД, где оно будет храниться в виде
-		 * массива байтов
+		 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ, 
+		 * пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
+		 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		 */
 		
 		openConnection();
 	 	Statement st = connection.createStatement();
 	 	ResultSet image = st.executeQuery("SELECT PlanImage FROM Plans WHERE TableName='"+imageName+"'");
 	 	image.next();
+	 	byte[] temp = image.getBytes(1);
 	 	closeConnection();
-	 	return image.getBytes(1);
+	 	return temp;
 	}
 	
 	
@@ -155,8 +156,8 @@ public class Main implements Runnable{
 	}
 	
 	/*
-	 * Сохраняем данные (таблицу соответствий уровней сигналов координатам 
-	 * и изображение плана этажа. 
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 
+	 * пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ. 
 	 */
 	public static void saveData(NavigationData tableDB) throws IOException, SQLException, ClassNotFoundException{
 	 	   openConnection();
@@ -181,7 +182,7 @@ public class Main implements Runnable{
 	 	 ResultSet countOfRows = st.executeQuery("SELECT COUNT(*) FROM plans");
 	 	 countOfRows.next();
 	 	 int count = countOfRows.getInt(1);
-	 	 PreparedStatement stmt = connection.prepareStatement("INSERT INTO Plans values ("+ ++count +", 'T4', ?)"); //заменить это убожество на нормальный запрос
+	 	 PreparedStatement stmt = connection.prepareStatement("INSERT INTO Plans values ("+ ++count +", 'T4', ?)"); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	 	 stmt.setBytes(1, getImageInBytes("T4"));
 	 	 stmt.executeUpdate();
 	 	 closeConnection();

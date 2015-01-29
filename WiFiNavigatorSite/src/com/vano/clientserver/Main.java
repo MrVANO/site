@@ -136,12 +136,12 @@ public class Main implements Runnable{
 	
 	public void run() {
 		try {
-			serverSocket = new ServerSocket(4445);
+			serverSocket = new ServerSocket(8000);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		System.out.println("Server started. Listening to the port 4445");
+		System.out.println("Server started. Listening to the port 8000");
 		while(true){
 			try {
 				waitToClient();

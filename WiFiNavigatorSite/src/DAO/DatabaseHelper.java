@@ -35,7 +35,8 @@ public class DatabaseHelper {
 	private void openConnection() throws ClassNotFoundException, SQLException{
 		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		connection = DriverManager.getConnection
-				("jdbc:mysql://localhost/navigatorbase", "root", "root"); 
+				("jdbc:mysql://localhost/wifinavigatorapp", "adminUJBQERY", "TcJcMQEcXnk6"); 
+				//("jdbc:mysql://localhost/navigatorbase", "root", "root"); 
 	}
 	
 	private void closeConnection() throws SQLException{

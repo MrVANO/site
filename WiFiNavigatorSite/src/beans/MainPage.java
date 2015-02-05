@@ -18,13 +18,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
+import com.vano.clientserver.DataSenderStarter;
+import com.vano.clientserver.Main;
+
 
 @ManagedBean
 public class MainPage {
 	
-	private static final int DEFAULT_BUFFER_SIZE = 10240;  
-    private String filePath = "D:\\downloads\\Navigator.apk"; //временная мера дожно
-	
+	private static final int DEFAULT_BUFFER_SIZE = 10240; 
+    private String filePath = System.getenv("OPENSHIFT_DATA_DIR")+"WiFiNavigator.apk"; //временная мера дожно
 	public void downloadProgram(ActionEvent actionEvent) throws IOException{
 		downLoad();
 	}

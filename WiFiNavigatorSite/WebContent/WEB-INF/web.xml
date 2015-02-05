@@ -18,6 +18,10 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
+	  <servlet-name>DataSenderStarter</servlet-name>
+	  <url-pattern>/downloadPlan</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping> 

@@ -25,14 +25,13 @@ import com.mysql.jdbc.Driver ;
 import java.io.*;
 
 
-public class Main implements Runnable{
+public class Main {
 	private static ServerSocket serverSocket;
 	private static Socket clientSocket;
 	private static int columnCount=0;
 	private static ObjectInputStream deserializer;
 	private static ObjectOutputStream serializer;
 	private static Connection connection;
-	
 
 	private static void waitToClient() throws ClassNotFoundException, SQLException{
 		try {
@@ -51,7 +50,7 @@ public class Main implements Runnable{
 	 * �������������� ����� ��� �������� �� ����
 	 */
 	
-	private static NavigationData getNavigationData(String numberOfPlace) throws ClassNotFoundException, SQLException, IOException{
+	public static NavigationData getNavigationData(String numberOfPlace) throws ClassNotFoundException, SQLException, IOException{
 		openConnection();
 		NavigationData nd = new NavigationData();
 		Statement st = connection.createStatement();
@@ -78,7 +77,7 @@ public class Main implements Runnable{
 		nd.setSignals(signals);
         nd.setSSID(SSID);
         nd.setTableName(numberOfPlace);
-        ResultSet rs2 = st.executeQuery("select PlanImage from Plans where tableName='"+numberOfPlace+"'");
+        ResultSet rs2 = st.executeQuery("select PlanImage from plans where tableName='"+numberOfPlace+"'");
         while (rs2.next())
 		{
         	nd.setPlaceMap(rs2.getBytes(1));
@@ -126,7 +125,7 @@ public class Main implements Runnable{
 		
 		openConnection();
 	 	Statement st = connection.createStatement();
-	 	ResultSet image = st.executeQuery("SELECT PlanImage FROM Plans WHERE TableName='"+imageName+"'");
+	 	ResultSet image = st.executeQuery("SELECT PlanImage FROM plans WHERE TableName='"+imageName+"'");
 	 	image.next();
 	 	byte[] temp = image.getBytes(1);
 	 	closeConnection();
@@ -134,39 +133,18 @@ public class Main implements Runnable{
 	}
 	
 	
-	public void run() {
-		try {
-			serverSocket = new ServerSocket(8000);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println("Server started. Listening to the port 8000");
-		while(true){
-			try {
-				waitToClient();
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-	}
-	
 	/*
 	 * ��������� ������ (������� ������������ ������� �������� ����������� 
 	 * � ����������� ����� �����. 
 	 */
 	public static void saveData(NavigationData tableDB) throws IOException, SQLException, ClassNotFoundException{
 	 	   openConnection();
-	 	   String CreateTablesquery = "CREATE TABLE IF NOT EXISTS "+tableDB.getTableName() +" (id INTEGER PRIMARY KEY autoincrement, x NUMERIC, y NUMERIC";
+	 	   String CreateTablesquery = "CREATE TABLE IF NOT EXISTS "+tableDB.getTableName() +" (id INTEGER PRIMARY KEY AUTO_INCREMENT, x NUMERIC, y NUMERIC";
 	 	   for (int i=3; i<tableDB.getSSID().size(); i++)
 	 		   CreateTablesquery+=", "+ tableDB.getSSID().get(i) + " NUMERIC";
 	 	   CreateTablesquery+=");";
 	 	   Statement st = connection.createStatement();
-	 	   st.executeQuery(CreateTablesquery);
+	 	   st.execute(CreateTablesquery);
 	 	   String checkTableExist = "SELECT * FROM "+tableDB.getTableName()+";";
 	 	   ResultSet rs = st.executeQuery(checkTableExist);
 	 	   if(!rs.next()){
@@ -176,15 +154,16 @@ public class Main implements Runnable{
 		 		   for (int j=0; j<tableDB.getSSID().size()-3; j++)
 		 			   insertQueryPoints+=","+ tableDB.getSignals().get(i).get(j);
 		 		   insertQueryPoints+=");";				  
-		 		   st.executeQuery(insertQueryPoints);
+		 		   st.execute(insertQueryPoints);
 		 	   }
 	 	   }
 	 	 ResultSet countOfRows = st.executeQuery("SELECT COUNT(*) FROM plans");
 	 	 countOfRows.next();
 	 	 int count = countOfRows.getInt(1);
-	 	 PreparedStatement stmt = connection.prepareStatement("INSERT INTO Plans values ("+ ++count +", 'T4', ?)"); //�������� ��� ��������� �� ���������� ������
-	 	 stmt.setBytes(1, getImageInBytes("T4"));
-	 	 stmt.executeUpdate();
+	 	 PreparedStatement stmt = connection.prepareStatement("INSERT INTO plans values ("+ ++count +", ?, ?)"); //�������� ��� ��������� �� ���������� ������
+	 	 stmt.setString(1, tableDB.getTableName());
+	 	 stmt.setBytes(2, tableDB.getPlaceMap());
+	 	 stmt.execute();
 	 	 closeConnection();
 	    }
 	
@@ -192,7 +171,7 @@ public class Main implements Runnable{
 	private static void openConnection() throws ClassNotFoundException, SQLException{
 		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		connection = DriverManager.getConnection
-				("jdbc:mysql://localhost/navigatorbase", "root", "root"); 
+				("jdbc:mysql://127.7.14.2:3306/wifinavigatorapp", "adminUJBQERY", "TcJcMQEcXnk6"); 
 	}
 	
 	private static void closeConnection() throws SQLException{
